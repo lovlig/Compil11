@@ -1,0 +1,14 @@
+
+vars int:(a,m); 
+real:(t)
+
+{
+    m:=0; 
+    a:=11; 
+    while (m<a)
+    {
+	m:=m+1; 
+	print(";\n"); 
+	t:=t+1.0
+    }
+}

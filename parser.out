@@ -1,0 +1,1940 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOLEAN
+
+Grammar
+
+Rule 0     S' -> prog
+Rule 1     prog -> VARS dec_list OF stmt_list CF
+Rule 2     prog -> VARS dec_list def_list OF stmt_list CF
+Rule 3     def_list -> def
+Rule 4     def_list -> def_list SC def
+Rule 5     def -> DEF ID OP dec_list CP OF stmt_list_def CF
+Rule 6     def -> DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF
+Rule 7     defstmt -> ID OP args CP
+Rule 8     args -> arg
+Rule 9     args -> args SC arg
+Rule 10    arg -> ID
+Rule 11    arg -> NUMBER_INT
+Rule 12    arg -> NUMBER_REAL
+Rule 13    arg -> OP exp CP
+Rule 14    dec_list -> dec
+Rule 15    dec_list -> dec_list SC dec
+Rule 16    dec -> type DP OP id_list CP
+Rule 17    type -> INT
+Rule 18    type -> REAL
+Rule 19    type -> STRING
+Rule 20    id_list -> ID
+Rule 21    id_list -> id_list CM ID
+Rule 22    stmt_list -> stmt
+Rule 23    stmt_list -> stmt_list SC stmt
+Rule 24    stmt -> prisv
+Rule 25    stmt -> print
+Rule 26    stmt -> while
+Rule 27    stmt -> if
+Rule 28    stmt_list_if -> stmt_if
+Rule 29    stmt_list_if -> stmt_list_if SC stmt_if
+Rule 30    stmt_if -> prisv
+Rule 31    stmt_if -> print
+Rule 32    stmt_if -> while
+Rule 33    stmt_if -> if
+Rule 34    stmt_if -> CONTINUE
+Rule 35    stmt_if -> BREAK
+Rule 36    stmt_list_def -> stmt_def
+Rule 37    stmt_list_def -> stmt_list_def SC stmt_def
+Rule 38    stmt_def -> prisv
+Rule 39    stmt_def -> print
+Rule 40    stmt_def -> while
+Rule 41    stmt_def -> if
+Rule 42    stmt_def -> return
+Rule 43    return -> RETURN exp
+Rule 44    prisv -> ID PRISV exp
+Rule 45    prisv -> ID PRISV STRING
+Rule 46    exp -> term
+Rule 47    exp -> exp SUM term
+Rule 48    exp -> exp SUB term
+Rule 49    term -> factor
+Rule 50    term -> term MUL factor
+Rule 51    term -> term DIV factor
+Rule 52    factor -> defstmt
+Rule 53    factor -> ID
+Rule 54    factor -> NUMBER_INT
+Rule 55    factor -> NUMBER_REAL
+Rule 56    factor -> OP exp CP
+Rule 57    print -> PRINT OP exp CP
+Rule 58    print -> PRINT OP STRING CP
+Rule 59    while -> WHILE bool_exp OF stmt_list CF
+Rule 60    if -> IF bool_exp OF stmt_list_if CF
+Rule 61    bool_exp -> bool_exp OR bool_exp_term
+Rule 62    bool_exp -> bool_exp_term
+Rule 63    bool_exp -> NOT bool_exp
+Rule 64    bool_exp -> bool
+Rule 65    bool_exp_term -> bool_exp_term AND bool
+Rule 66    bool_exp_term -> bool
+Rule 67    bool -> OP exp RAVNO exp CP
+Rule 68    bool -> OP exp MORE exp CP
+Rule 69    bool -> OP exp LESS exp CP
+
+Terminals, with rules where they appear
+
+AND                  : 65
+BOOLEAN              : 
+BREAK                : 35
+CF                   : 1 2 5 6 59 60
+CM                   : 21
+CONTINUE             : 34
+CP                   : 5 6 7 13 16 56 57 58 67 68 69
+DEF                  : 5 6
+DIV                  : 51
+DP                   : 16
+ID                   : 5 6 7 10 20 21 44 45 53
+IF                   : 60
+INT                  : 17
+LESS                 : 69
+MORE                 : 68
+MUL                  : 50
+NOT                  : 63
+NUMBER_INT           : 11 54
+NUMBER_REAL          : 12 55
+OF                   : 1 2 5 6 59 60
+OP                   : 5 6 7 13 16 56 57 58 67 68 69
+OR                   : 61
+PRINT                : 57 58
+PRISV                : 44 45
+RAVNO                : 67
+REAL                 : 18
+RETURN               : 43
+SC                   : 4 9 15 23 29 37
+STRING               : 19 45 58
+SUB                  : 48
+SUM                  : 47
+VARS                 : 1 2 6
+WHILE                : 59
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg                  : 8 9
+args                 : 7 9
+bool                 : 64 65 66
+bool_exp             : 59 60 61 63
+bool_exp_term        : 61 62 65
+dec                  : 14 15
+dec_list             : 1 2 5 6 6 15
+def                  : 3 4
+def_list             : 2 4
+defstmt              : 52
+exp                  : 13 43 44 47 48 56 57 67 67 68 68 69 69
+factor               : 49 50 51
+id_list              : 16 21
+if                   : 27 33 41
+print                : 25 31 39
+prisv                : 24 30 38
+prog                 : 0
+return               : 42
+stmt                 : 22 23
+stmt_def             : 36 37
+stmt_if              : 28 29
+stmt_list            : 1 2 23 59
+stmt_list_def        : 5 6 37
+stmt_list_if         : 29 60
+term                 : 46 47 48 50 51
+type                 : 16
+while                : 26 32 40
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . prog
+    (1) prog -> . VARS dec_list OF stmt_list CF
+    (2) prog -> . VARS dec_list def_list OF stmt_list CF
+
+    VARS            shift and go to state 2
+
+    prog                           shift and go to state 1
+
+state 1
+
+    (0) S' -> prog .
+
+
+
+state 2
+
+    (1) prog -> VARS . dec_list OF stmt_list CF
+    (2) prog -> VARS . dec_list def_list OF stmt_list CF
+    (14) dec_list -> . dec
+    (15) dec_list -> . dec_list SC dec
+    (16) dec -> . type DP OP id_list CP
+    (17) type -> . INT
+    (18) type -> . REAL
+    (19) type -> . STRING
+
+    INT             shift and go to state 6
+    REAL            shift and go to state 7
+    STRING          shift and go to state 8
+
+    dec_list                       shift and go to state 3
+    dec                            shift and go to state 4
+    type                           shift and go to state 5
+
+state 3
+
+    (1) prog -> VARS dec_list . OF stmt_list CF
+    (2) prog -> VARS dec_list . def_list OF stmt_list CF
+    (15) dec_list -> dec_list . SC dec
+    (3) def_list -> . def
+    (4) def_list -> . def_list SC def
+    (5) def -> . DEF ID OP dec_list CP OF stmt_list_def CF
+    (6) def -> . DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF
+
+    OF              shift and go to state 9
+    SC              shift and go to state 11
+    DEF             shift and go to state 13
+
+    def_list                       shift and go to state 10
+    def                            shift and go to state 12
+
+state 4
+
+    (14) dec_list -> dec .
+
+    OF              reduce using rule 14 (dec_list -> dec .)
+    SC              reduce using rule 14 (dec_list -> dec .)
+    DEF             reduce using rule 14 (dec_list -> dec .)
+    CP              reduce using rule 14 (dec_list -> dec .)
+    ID              reduce using rule 14 (dec_list -> dec .)
+    PRINT           reduce using rule 14 (dec_list -> dec .)
+    WHILE           reduce using rule 14 (dec_list -> dec .)
+    IF              reduce using rule 14 (dec_list -> dec .)
+    RETURN          reduce using rule 14 (dec_list -> dec .)
+
+
+state 5
+
+    (16) dec -> type . DP OP id_list CP
+
+    DP              shift and go to state 14
+
+
+state 6
+
+    (17) type -> INT .
+
+    DP              reduce using rule 17 (type -> INT .)
+
+
+state 7
+
+    (18) type -> REAL .
+
+    DP              reduce using rule 18 (type -> REAL .)
+
+
+state 8
+
+    (19) type -> STRING .
+
+    DP              reduce using rule 19 (type -> STRING .)
+
+
+state 9
+
+    (1) prog -> VARS dec_list OF . stmt_list CF
+    (22) stmt_list -> . stmt
+    (23) stmt_list -> . stmt_list SC stmt
+    (24) stmt -> . prisv
+    (25) stmt -> . print
+    (26) stmt -> . while
+    (27) stmt -> . if
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt_list                      shift and go to state 15
+    stmt                           shift and go to state 16
+    prisv                          shift and go to state 17
+    print                          shift and go to state 18
+    while                          shift and go to state 19
+    if                             shift and go to state 20
+
+state 10
+
+    (2) prog -> VARS dec_list def_list . OF stmt_list CF
+    (4) def_list -> def_list . SC def
+
+    OF              shift and go to state 25
+    SC              shift and go to state 26
+
+
+state 11
+
+    (15) dec_list -> dec_list SC . dec
+    (16) dec -> . type DP OP id_list CP
+    (17) type -> . INT
+    (18) type -> . REAL
+    (19) type -> . STRING
+
+    INT             shift and go to state 6
+    REAL            shift and go to state 7
+    STRING          shift and go to state 8
+
+    dec                            shift and go to state 27
+    type                           shift and go to state 5
+
+state 12
+
+    (3) def_list -> def .
+
+    OF              reduce using rule 3 (def_list -> def .)
+    SC              reduce using rule 3 (def_list -> def .)
+
+
+state 13
+
+    (5) def -> DEF . ID OP dec_list CP OF stmt_list_def CF
+    (6) def -> DEF . ID OP dec_list CP OF VARS dec_list stmt_list_def CF
+
+    ID              shift and go to state 28
+
+
+state 14
+
+    (16) dec -> type DP . OP id_list CP
+
+    OP              shift and go to state 29
+
+
+state 15
+
+    (1) prog -> VARS dec_list OF stmt_list . CF
+    (23) stmt_list -> stmt_list . SC stmt
+
+    CF              shift and go to state 30
+    SC              shift and go to state 31
+
+
+state 16
+
+    (22) stmt_list -> stmt .
+
+    CF              reduce using rule 22 (stmt_list -> stmt .)
+    SC              reduce using rule 22 (stmt_list -> stmt .)
+
+
+state 17
+
+    (24) stmt -> prisv .
+
+    CF              reduce using rule 24 (stmt -> prisv .)
+    SC              reduce using rule 24 (stmt -> prisv .)
+
+
+state 18
+
+    (25) stmt -> print .
+
+    CF              reduce using rule 25 (stmt -> print .)
+    SC              reduce using rule 25 (stmt -> print .)
+
+
+state 19
+
+    (26) stmt -> while .
+
+    CF              reduce using rule 26 (stmt -> while .)
+    SC              reduce using rule 26 (stmt -> while .)
+
+
+state 20
+
+    (27) stmt -> if .
+
+    CF              reduce using rule 27 (stmt -> if .)
+    SC              reduce using rule 27 (stmt -> if .)
+
+
+state 21
+
+    (44) prisv -> ID . PRISV exp
+    (45) prisv -> ID . PRISV STRING
+
+    PRISV           shift and go to state 32
+
+
+state 22
+
+    (57) print -> PRINT . OP exp CP
+    (58) print -> PRINT . OP STRING CP
+
+    OP              shift and go to state 33
+
+
+state 23
+
+    (59) while -> WHILE . bool_exp OF stmt_list CF
+    (61) bool_exp -> . bool_exp OR bool_exp_term
+    (62) bool_exp -> . bool_exp_term
+    (63) bool_exp -> . NOT bool_exp
+    (64) bool_exp -> . bool
+    (65) bool_exp_term -> . bool_exp_term AND bool
+    (66) bool_exp_term -> . bool
+    (67) bool -> . OP exp RAVNO exp CP
+    (68) bool -> . OP exp MORE exp CP
+    (69) bool -> . OP exp LESS exp CP
+
+    NOT             shift and go to state 36
+    OP              shift and go to state 38
+
+    bool_exp                       shift and go to state 34
+    bool_exp_term                  shift and go to state 35
+    bool                           shift and go to state 37
+
+state 24
+
+    (60) if -> IF . bool_exp OF stmt_list_if CF
+    (61) bool_exp -> . bool_exp OR bool_exp_term
+    (62) bool_exp -> . bool_exp_term
+    (63) bool_exp -> . NOT bool_exp
+    (64) bool_exp -> . bool
+    (65) bool_exp_term -> . bool_exp_term AND bool
+    (66) bool_exp_term -> . bool
+    (67) bool -> . OP exp RAVNO exp CP
+    (68) bool -> . OP exp MORE exp CP
+    (69) bool -> . OP exp LESS exp CP
+
+    NOT             shift and go to state 36
+    OP              shift and go to state 38
+
+    bool_exp                       shift and go to state 39
+    bool_exp_term                  shift and go to state 35
+    bool                           shift and go to state 37
+
+state 25
+
+    (2) prog -> VARS dec_list def_list OF . stmt_list CF
+    (22) stmt_list -> . stmt
+    (23) stmt_list -> . stmt_list SC stmt
+    (24) stmt -> . prisv
+    (25) stmt -> . print
+    (26) stmt -> . while
+    (27) stmt -> . if
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt_list                      shift and go to state 40
+    stmt                           shift and go to state 16
+    prisv                          shift and go to state 17
+    print                          shift and go to state 18
+    while                          shift and go to state 19
+    if                             shift and go to state 20
+
+state 26
+
+    (4) def_list -> def_list SC . def
+    (5) def -> . DEF ID OP dec_list CP OF stmt_list_def CF
+    (6) def -> . DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF
+
+    DEF             shift and go to state 13
+
+    def                            shift and go to state 41
+
+state 27
+
+    (15) dec_list -> dec_list SC dec .
+
+    OF              reduce using rule 15 (dec_list -> dec_list SC dec .)
+    SC              reduce using rule 15 (dec_list -> dec_list SC dec .)
+    DEF             reduce using rule 15 (dec_list -> dec_list SC dec .)
+    CP              reduce using rule 15 (dec_list -> dec_list SC dec .)
+    ID              reduce using rule 15 (dec_list -> dec_list SC dec .)
+    PRINT           reduce using rule 15 (dec_list -> dec_list SC dec .)
+    WHILE           reduce using rule 15 (dec_list -> dec_list SC dec .)
+    IF              reduce using rule 15 (dec_list -> dec_list SC dec .)
+    RETURN          reduce using rule 15 (dec_list -> dec_list SC dec .)
+
+
+state 28
+
+    (5) def -> DEF ID . OP dec_list CP OF stmt_list_def CF
+    (6) def -> DEF ID . OP dec_list CP OF VARS dec_list stmt_list_def CF
+
+    OP              shift and go to state 42
+
+
+state 29
+
+    (16) dec -> type DP OP . id_list CP
+    (20) id_list -> . ID
+    (21) id_list -> . id_list CM ID
+
+    ID              shift and go to state 44
+
+    id_list                        shift and go to state 43
+
+state 30
+
+    (1) prog -> VARS dec_list OF stmt_list CF .
+
+    $end            reduce using rule 1 (prog -> VARS dec_list OF stmt_list CF .)
+
+
+state 31
+
+    (23) stmt_list -> stmt_list SC . stmt
+    (24) stmt -> . prisv
+    (25) stmt -> . print
+    (26) stmt -> . while
+    (27) stmt -> . if
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt                           shift and go to state 45
+    prisv                          shift and go to state 17
+    print                          shift and go to state 18
+    while                          shift and go to state 19
+    if                             shift and go to state 20
+
+state 32
+
+    (44) prisv -> ID PRISV . exp
+    (45) prisv -> ID PRISV . STRING
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    STRING          shift and go to state 48
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 47
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 33
+
+    (57) print -> PRINT OP . exp CP
+    (58) print -> PRINT OP . STRING CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    STRING          shift and go to state 56
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 55
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 34
+
+    (59) while -> WHILE bool_exp . OF stmt_list CF
+    (61) bool_exp -> bool_exp . OR bool_exp_term
+
+    OF              shift and go to state 57
+    OR              shift and go to state 58
+
+
+state 35
+
+    (62) bool_exp -> bool_exp_term .
+    (65) bool_exp_term -> bool_exp_term . AND bool
+
+    OF              reduce using rule 62 (bool_exp -> bool_exp_term .)
+    OR              reduce using rule 62 (bool_exp -> bool_exp_term .)
+    AND             shift and go to state 59
+
+
+state 36
+
+    (63) bool_exp -> NOT . bool_exp
+    (61) bool_exp -> . bool_exp OR bool_exp_term
+    (62) bool_exp -> . bool_exp_term
+    (63) bool_exp -> . NOT bool_exp
+    (64) bool_exp -> . bool
+    (65) bool_exp_term -> . bool_exp_term AND bool
+    (66) bool_exp_term -> . bool
+    (67) bool -> . OP exp RAVNO exp CP
+    (68) bool -> . OP exp MORE exp CP
+    (69) bool -> . OP exp LESS exp CP
+
+    NOT             shift and go to state 36
+    OP              shift and go to state 38
+
+    bool_exp                       shift and go to state 60
+    bool_exp_term                  shift and go to state 35
+    bool                           shift and go to state 37
+
+state 37
+
+    (64) bool_exp -> bool .
+    (66) bool_exp_term -> bool .
+
+  ! reduce/reduce conflict for OF resolved using rule 64 (bool_exp -> bool .)
+  ! reduce/reduce conflict for OR resolved using rule 64 (bool_exp -> bool .)
+    OF              reduce using rule 64 (bool_exp -> bool .)
+    OR              reduce using rule 64 (bool_exp -> bool .)
+    AND             reduce using rule 66 (bool_exp_term -> bool .)
+
+  ! OF              [ reduce using rule 66 (bool_exp_term -> bool .) ]
+  ! OR              [ reduce using rule 66 (bool_exp_term -> bool .) ]
+
+
+state 38
+
+    (67) bool -> OP . exp RAVNO exp CP
+    (68) bool -> OP . exp MORE exp CP
+    (69) bool -> OP . exp LESS exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 61
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 39
+
+    (60) if -> IF bool_exp . OF stmt_list_if CF
+    (61) bool_exp -> bool_exp . OR bool_exp_term
+
+    OF              shift and go to state 62
+    OR              shift and go to state 58
+
+
+state 40
+
+    (2) prog -> VARS dec_list def_list OF stmt_list . CF
+    (23) stmt_list -> stmt_list . SC stmt
+
+    CF              shift and go to state 63
+    SC              shift and go to state 31
+
+
+state 41
+
+    (4) def_list -> def_list SC def .
+
+    OF              reduce using rule 4 (def_list -> def_list SC def .)
+    SC              reduce using rule 4 (def_list -> def_list SC def .)
+
+
+state 42
+
+    (5) def -> DEF ID OP . dec_list CP OF stmt_list_def CF
+    (6) def -> DEF ID OP . dec_list CP OF VARS dec_list stmt_list_def CF
+    (14) dec_list -> . dec
+    (15) dec_list -> . dec_list SC dec
+    (16) dec -> . type DP OP id_list CP
+    (17) type -> . INT
+    (18) type -> . REAL
+    (19) type -> . STRING
+
+    INT             shift and go to state 6
+    REAL            shift and go to state 7
+    STRING          shift and go to state 8
+
+    dec_list                       shift and go to state 64
+    dec                            shift and go to state 4
+    type                           shift and go to state 5
+
+state 43
+
+    (16) dec -> type DP OP id_list . CP
+    (21) id_list -> id_list . CM ID
+
+    CP              shift and go to state 65
+    CM              shift and go to state 66
+
+
+state 44
+
+    (20) id_list -> ID .
+
+    CP              reduce using rule 20 (id_list -> ID .)
+    CM              reduce using rule 20 (id_list -> ID .)
+
+
+state 45
+
+    (23) stmt_list -> stmt_list SC stmt .
+
+    CF              reduce using rule 23 (stmt_list -> stmt_list SC stmt .)
+    SC              reduce using rule 23 (stmt_list -> stmt_list SC stmt .)
+
+
+state 46
+
+    (53) factor -> ID .
+    (7) defstmt -> ID . OP args CP
+
+    MUL             reduce using rule 53 (factor -> ID .)
+    DIV             reduce using rule 53 (factor -> ID .)
+    SUM             reduce using rule 53 (factor -> ID .)
+    SUB             reduce using rule 53 (factor -> ID .)
+    CF              reduce using rule 53 (factor -> ID .)
+    SC              reduce using rule 53 (factor -> ID .)
+    CP              reduce using rule 53 (factor -> ID .)
+    RAVNO           reduce using rule 53 (factor -> ID .)
+    MORE            reduce using rule 53 (factor -> ID .)
+    LESS            reduce using rule 53 (factor -> ID .)
+    OP              shift and go to state 67
+
+
+state 47
+
+    (44) prisv -> ID PRISV exp .
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CF              reduce using rule 44 (prisv -> ID PRISV exp .)
+    SC              reduce using rule 44 (prisv -> ID PRISV exp .)
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 48
+
+    (45) prisv -> ID PRISV STRING .
+
+    CF              reduce using rule 45 (prisv -> ID PRISV STRING .)
+    SC              reduce using rule 45 (prisv -> ID PRISV STRING .)
+
+
+state 49
+
+    (46) exp -> term .
+    (50) term -> term . MUL factor
+    (51) term -> term . DIV factor
+
+    SUM             reduce using rule 46 (exp -> term .)
+    SUB             reduce using rule 46 (exp -> term .)
+    CF              reduce using rule 46 (exp -> term .)
+    SC              reduce using rule 46 (exp -> term .)
+    CP              reduce using rule 46 (exp -> term .)
+    RAVNO           reduce using rule 46 (exp -> term .)
+    MORE            reduce using rule 46 (exp -> term .)
+    LESS            reduce using rule 46 (exp -> term .)
+    MUL             shift and go to state 70
+    DIV             shift and go to state 71
+
+
+state 50
+
+    (49) term -> factor .
+
+    MUL             reduce using rule 49 (term -> factor .)
+    DIV             reduce using rule 49 (term -> factor .)
+    SUM             reduce using rule 49 (term -> factor .)
+    SUB             reduce using rule 49 (term -> factor .)
+    CF              reduce using rule 49 (term -> factor .)
+    SC              reduce using rule 49 (term -> factor .)
+    CP              reduce using rule 49 (term -> factor .)
+    RAVNO           reduce using rule 49 (term -> factor .)
+    MORE            reduce using rule 49 (term -> factor .)
+    LESS            reduce using rule 49 (term -> factor .)
+
+
+state 51
+
+    (52) factor -> defstmt .
+
+    MUL             reduce using rule 52 (factor -> defstmt .)
+    DIV             reduce using rule 52 (factor -> defstmt .)
+    SUM             reduce using rule 52 (factor -> defstmt .)
+    SUB             reduce using rule 52 (factor -> defstmt .)
+    CF              reduce using rule 52 (factor -> defstmt .)
+    SC              reduce using rule 52 (factor -> defstmt .)
+    CP              reduce using rule 52 (factor -> defstmt .)
+    RAVNO           reduce using rule 52 (factor -> defstmt .)
+    MORE            reduce using rule 52 (factor -> defstmt .)
+    LESS            reduce using rule 52 (factor -> defstmt .)
+
+
+state 52
+
+    (54) factor -> NUMBER_INT .
+
+    MUL             reduce using rule 54 (factor -> NUMBER_INT .)
+    DIV             reduce using rule 54 (factor -> NUMBER_INT .)
+    SUM             reduce using rule 54 (factor -> NUMBER_INT .)
+    SUB             reduce using rule 54 (factor -> NUMBER_INT .)
+    CF              reduce using rule 54 (factor -> NUMBER_INT .)
+    SC              reduce using rule 54 (factor -> NUMBER_INT .)
+    CP              reduce using rule 54 (factor -> NUMBER_INT .)
+    RAVNO           reduce using rule 54 (factor -> NUMBER_INT .)
+    MORE            reduce using rule 54 (factor -> NUMBER_INT .)
+    LESS            reduce using rule 54 (factor -> NUMBER_INT .)
+
+
+state 53
+
+    (55) factor -> NUMBER_REAL .
+
+    MUL             reduce using rule 55 (factor -> NUMBER_REAL .)
+    DIV             reduce using rule 55 (factor -> NUMBER_REAL .)
+    SUM             reduce using rule 55 (factor -> NUMBER_REAL .)
+    SUB             reduce using rule 55 (factor -> NUMBER_REAL .)
+    CF              reduce using rule 55 (factor -> NUMBER_REAL .)
+    SC              reduce using rule 55 (factor -> NUMBER_REAL .)
+    CP              reduce using rule 55 (factor -> NUMBER_REAL .)
+    RAVNO           reduce using rule 55 (factor -> NUMBER_REAL .)
+    MORE            reduce using rule 55 (factor -> NUMBER_REAL .)
+    LESS            reduce using rule 55 (factor -> NUMBER_REAL .)
+
+
+state 54
+
+    (56) factor -> OP . exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 72
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 55
+
+    (57) print -> PRINT OP exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 73
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 56
+
+    (58) print -> PRINT OP STRING . CP
+
+    CP              shift and go to state 74
+
+
+state 57
+
+    (59) while -> WHILE bool_exp OF . stmt_list CF
+    (22) stmt_list -> . stmt
+    (23) stmt_list -> . stmt_list SC stmt
+    (24) stmt -> . prisv
+    (25) stmt -> . print
+    (26) stmt -> . while
+    (27) stmt -> . if
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt_list                      shift and go to state 75
+    stmt                           shift and go to state 16
+    prisv                          shift and go to state 17
+    print                          shift and go to state 18
+    while                          shift and go to state 19
+    if                             shift and go to state 20
+
+state 58
+
+    (61) bool_exp -> bool_exp OR . bool_exp_term
+    (65) bool_exp_term -> . bool_exp_term AND bool
+    (66) bool_exp_term -> . bool
+    (67) bool -> . OP exp RAVNO exp CP
+    (68) bool -> . OP exp MORE exp CP
+    (69) bool -> . OP exp LESS exp CP
+
+    OP              shift and go to state 38
+
+    bool_exp_term                  shift and go to state 76
+    bool                           shift and go to state 77
+
+state 59
+
+    (65) bool_exp_term -> bool_exp_term AND . bool
+    (67) bool -> . OP exp RAVNO exp CP
+    (68) bool -> . OP exp MORE exp CP
+    (69) bool -> . OP exp LESS exp CP
+
+    OP              shift and go to state 38
+
+    bool                           shift and go to state 78
+
+state 60
+
+    (63) bool_exp -> NOT bool_exp .
+    (61) bool_exp -> bool_exp . OR bool_exp_term
+
+  ! shift/reduce conflict for OR resolved as shift
+    OF              reduce using rule 63 (bool_exp -> NOT bool_exp .)
+    OR              shift and go to state 58
+
+  ! OR              [ reduce using rule 63 (bool_exp -> NOT bool_exp .) ]
+
+
+state 61
+
+    (67) bool -> OP exp . RAVNO exp CP
+    (68) bool -> OP exp . MORE exp CP
+    (69) bool -> OP exp . LESS exp CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    RAVNO           shift and go to state 79
+    MORE            shift and go to state 80
+    LESS            shift and go to state 81
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 62
+
+    (60) if -> IF bool_exp OF . stmt_list_if CF
+    (28) stmt_list_if -> . stmt_if
+    (29) stmt_list_if -> . stmt_list_if SC stmt_if
+    (30) stmt_if -> . prisv
+    (31) stmt_if -> . print
+    (32) stmt_if -> . while
+    (33) stmt_if -> . if
+    (34) stmt_if -> . CONTINUE
+    (35) stmt_if -> . BREAK
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    CONTINUE        shift and go to state 88
+    BREAK           shift and go to state 89
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt_list_if                   shift and go to state 82
+    stmt_if                        shift and go to state 83
+    prisv                          shift and go to state 84
+    print                          shift and go to state 85
+    while                          shift and go to state 86
+    if                             shift and go to state 87
+
+state 63
+
+    (2) prog -> VARS dec_list def_list OF stmt_list CF .
+
+    $end            reduce using rule 2 (prog -> VARS dec_list def_list OF stmt_list CF .)
+
+
+state 64
+
+    (5) def -> DEF ID OP dec_list . CP OF stmt_list_def CF
+    (6) def -> DEF ID OP dec_list . CP OF VARS dec_list stmt_list_def CF
+    (15) dec_list -> dec_list . SC dec
+
+    CP              shift and go to state 90
+    SC              shift and go to state 11
+
+
+state 65
+
+    (16) dec -> type DP OP id_list CP .
+
+    OF              reduce using rule 16 (dec -> type DP OP id_list CP .)
+    SC              reduce using rule 16 (dec -> type DP OP id_list CP .)
+    DEF             reduce using rule 16 (dec -> type DP OP id_list CP .)
+    CP              reduce using rule 16 (dec -> type DP OP id_list CP .)
+    ID              reduce using rule 16 (dec -> type DP OP id_list CP .)
+    PRINT           reduce using rule 16 (dec -> type DP OP id_list CP .)
+    WHILE           reduce using rule 16 (dec -> type DP OP id_list CP .)
+    IF              reduce using rule 16 (dec -> type DP OP id_list CP .)
+    RETURN          reduce using rule 16 (dec -> type DP OP id_list CP .)
+
+
+state 66
+
+    (21) id_list -> id_list CM . ID
+
+    ID              shift and go to state 91
+
+
+state 67
+
+    (7) defstmt -> ID OP . args CP
+    (8) args -> . arg
+    (9) args -> . args SC arg
+    (10) arg -> . ID
+    (11) arg -> . NUMBER_INT
+    (12) arg -> . NUMBER_REAL
+    (13) arg -> . OP exp CP
+
+    ID              shift and go to state 92
+    NUMBER_INT      shift and go to state 96
+    NUMBER_REAL     shift and go to state 97
+    OP              shift and go to state 93
+
+    args                           shift and go to state 94
+    arg                            shift and go to state 95
+
+state 68
+
+    (47) exp -> exp SUM . term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    term                           shift and go to state 98
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 69
+
+    (48) exp -> exp SUB . term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    term                           shift and go to state 99
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 70
+
+    (50) term -> term MUL . factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    factor                         shift and go to state 100
+    defstmt                        shift and go to state 51
+
+state 71
+
+    (51) term -> term DIV . factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    factor                         shift and go to state 101
+    defstmt                        shift and go to state 51
+
+state 72
+
+    (56) factor -> OP exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 102
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 73
+
+    (57) print -> PRINT OP exp CP .
+
+    CF              reduce using rule 57 (print -> PRINT OP exp CP .)
+    SC              reduce using rule 57 (print -> PRINT OP exp CP .)
+
+
+state 74
+
+    (58) print -> PRINT OP STRING CP .
+
+    CF              reduce using rule 58 (print -> PRINT OP STRING CP .)
+    SC              reduce using rule 58 (print -> PRINT OP STRING CP .)
+
+
+state 75
+
+    (59) while -> WHILE bool_exp OF stmt_list . CF
+    (23) stmt_list -> stmt_list . SC stmt
+
+    CF              shift and go to state 103
+    SC              shift and go to state 31
+
+
+state 76
+
+    (61) bool_exp -> bool_exp OR bool_exp_term .
+    (65) bool_exp_term -> bool_exp_term . AND bool
+
+    OF              reduce using rule 61 (bool_exp -> bool_exp OR bool_exp_term .)
+    OR              reduce using rule 61 (bool_exp -> bool_exp OR bool_exp_term .)
+    AND             shift and go to state 59
+
+
+state 77
+
+    (66) bool_exp_term -> bool .
+
+    AND             reduce using rule 66 (bool_exp_term -> bool .)
+    OF              reduce using rule 66 (bool_exp_term -> bool .)
+    OR              reduce using rule 66 (bool_exp_term -> bool .)
+
+
+state 78
+
+    (65) bool_exp_term -> bool_exp_term AND bool .
+
+    AND             reduce using rule 65 (bool_exp_term -> bool_exp_term AND bool .)
+    OF              reduce using rule 65 (bool_exp_term -> bool_exp_term AND bool .)
+    OR              reduce using rule 65 (bool_exp_term -> bool_exp_term AND bool .)
+
+
+state 79
+
+    (67) bool -> OP exp RAVNO . exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 104
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 80
+
+    (68) bool -> OP exp MORE . exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 105
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 81
+
+    (69) bool -> OP exp LESS . exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 106
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 82
+
+    (60) if -> IF bool_exp OF stmt_list_if . CF
+    (29) stmt_list_if -> stmt_list_if . SC stmt_if
+
+    CF              shift and go to state 107
+    SC              shift and go to state 108
+
+
+state 83
+
+    (28) stmt_list_if -> stmt_if .
+
+    CF              reduce using rule 28 (stmt_list_if -> stmt_if .)
+    SC              reduce using rule 28 (stmt_list_if -> stmt_if .)
+
+
+state 84
+
+    (30) stmt_if -> prisv .
+
+    CF              reduce using rule 30 (stmt_if -> prisv .)
+    SC              reduce using rule 30 (stmt_if -> prisv .)
+
+
+state 85
+
+    (31) stmt_if -> print .
+
+    CF              reduce using rule 31 (stmt_if -> print .)
+    SC              reduce using rule 31 (stmt_if -> print .)
+
+
+state 86
+
+    (32) stmt_if -> while .
+
+    CF              reduce using rule 32 (stmt_if -> while .)
+    SC              reduce using rule 32 (stmt_if -> while .)
+
+
+state 87
+
+    (33) stmt_if -> if .
+
+    CF              reduce using rule 33 (stmt_if -> if .)
+    SC              reduce using rule 33 (stmt_if -> if .)
+
+
+state 88
+
+    (34) stmt_if -> CONTINUE .
+
+    CF              reduce using rule 34 (stmt_if -> CONTINUE .)
+    SC              reduce using rule 34 (stmt_if -> CONTINUE .)
+
+
+state 89
+
+    (35) stmt_if -> BREAK .
+
+    CF              reduce using rule 35 (stmt_if -> BREAK .)
+    SC              reduce using rule 35 (stmt_if -> BREAK .)
+
+
+state 90
+
+    (5) def -> DEF ID OP dec_list CP . OF stmt_list_def CF
+    (6) def -> DEF ID OP dec_list CP . OF VARS dec_list stmt_list_def CF
+
+    OF              shift and go to state 109
+
+
+state 91
+
+    (21) id_list -> id_list CM ID .
+
+    CP              reduce using rule 21 (id_list -> id_list CM ID .)
+    CM              reduce using rule 21 (id_list -> id_list CM ID .)
+
+
+state 92
+
+    (10) arg -> ID .
+
+    CP              reduce using rule 10 (arg -> ID .)
+    SC              reduce using rule 10 (arg -> ID .)
+
+
+state 93
+
+    (13) arg -> OP . exp CP
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 110
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 94
+
+    (7) defstmt -> ID OP args . CP
+    (9) args -> args . SC arg
+
+    CP              shift and go to state 111
+    SC              shift and go to state 112
+
+
+state 95
+
+    (8) args -> arg .
+
+    CP              reduce using rule 8 (args -> arg .)
+    SC              reduce using rule 8 (args -> arg .)
+
+
+state 96
+
+    (11) arg -> NUMBER_INT .
+
+    CP              reduce using rule 11 (arg -> NUMBER_INT .)
+    SC              reduce using rule 11 (arg -> NUMBER_INT .)
+
+
+state 97
+
+    (12) arg -> NUMBER_REAL .
+
+    CP              reduce using rule 12 (arg -> NUMBER_REAL .)
+    SC              reduce using rule 12 (arg -> NUMBER_REAL .)
+
+
+state 98
+
+    (47) exp -> exp SUM term .
+    (50) term -> term . MUL factor
+    (51) term -> term . DIV factor
+
+    SUM             reduce using rule 47 (exp -> exp SUM term .)
+    SUB             reduce using rule 47 (exp -> exp SUM term .)
+    CF              reduce using rule 47 (exp -> exp SUM term .)
+    SC              reduce using rule 47 (exp -> exp SUM term .)
+    CP              reduce using rule 47 (exp -> exp SUM term .)
+    RAVNO           reduce using rule 47 (exp -> exp SUM term .)
+    MORE            reduce using rule 47 (exp -> exp SUM term .)
+    LESS            reduce using rule 47 (exp -> exp SUM term .)
+    MUL             shift and go to state 70
+    DIV             shift and go to state 71
+
+
+state 99
+
+    (48) exp -> exp SUB term .
+    (50) term -> term . MUL factor
+    (51) term -> term . DIV factor
+
+    SUM             reduce using rule 48 (exp -> exp SUB term .)
+    SUB             reduce using rule 48 (exp -> exp SUB term .)
+    CF              reduce using rule 48 (exp -> exp SUB term .)
+    SC              reduce using rule 48 (exp -> exp SUB term .)
+    CP              reduce using rule 48 (exp -> exp SUB term .)
+    RAVNO           reduce using rule 48 (exp -> exp SUB term .)
+    MORE            reduce using rule 48 (exp -> exp SUB term .)
+    LESS            reduce using rule 48 (exp -> exp SUB term .)
+    MUL             shift and go to state 70
+    DIV             shift and go to state 71
+
+
+state 100
+
+    (50) term -> term MUL factor .
+
+    MUL             reduce using rule 50 (term -> term MUL factor .)
+    DIV             reduce using rule 50 (term -> term MUL factor .)
+    SUM             reduce using rule 50 (term -> term MUL factor .)
+    SUB             reduce using rule 50 (term -> term MUL factor .)
+    CF              reduce using rule 50 (term -> term MUL factor .)
+    SC              reduce using rule 50 (term -> term MUL factor .)
+    CP              reduce using rule 50 (term -> term MUL factor .)
+    RAVNO           reduce using rule 50 (term -> term MUL factor .)
+    MORE            reduce using rule 50 (term -> term MUL factor .)
+    LESS            reduce using rule 50 (term -> term MUL factor .)
+
+
+state 101
+
+    (51) term -> term DIV factor .
+
+    MUL             reduce using rule 51 (term -> term DIV factor .)
+    DIV             reduce using rule 51 (term -> term DIV factor .)
+    SUM             reduce using rule 51 (term -> term DIV factor .)
+    SUB             reduce using rule 51 (term -> term DIV factor .)
+    CF              reduce using rule 51 (term -> term DIV factor .)
+    SC              reduce using rule 51 (term -> term DIV factor .)
+    CP              reduce using rule 51 (term -> term DIV factor .)
+    RAVNO           reduce using rule 51 (term -> term DIV factor .)
+    MORE            reduce using rule 51 (term -> term DIV factor .)
+    LESS            reduce using rule 51 (term -> term DIV factor .)
+
+
+state 102
+
+    (56) factor -> OP exp CP .
+
+    MUL             reduce using rule 56 (factor -> OP exp CP .)
+    DIV             reduce using rule 56 (factor -> OP exp CP .)
+    SUM             reduce using rule 56 (factor -> OP exp CP .)
+    SUB             reduce using rule 56 (factor -> OP exp CP .)
+    CF              reduce using rule 56 (factor -> OP exp CP .)
+    SC              reduce using rule 56 (factor -> OP exp CP .)
+    CP              reduce using rule 56 (factor -> OP exp CP .)
+    RAVNO           reduce using rule 56 (factor -> OP exp CP .)
+    MORE            reduce using rule 56 (factor -> OP exp CP .)
+    LESS            reduce using rule 56 (factor -> OP exp CP .)
+
+
+state 103
+
+    (59) while -> WHILE bool_exp OF stmt_list CF .
+
+    CF              reduce using rule 59 (while -> WHILE bool_exp OF stmt_list CF .)
+    SC              reduce using rule 59 (while -> WHILE bool_exp OF stmt_list CF .)
+
+
+state 104
+
+    (67) bool -> OP exp RAVNO exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 113
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 105
+
+    (68) bool -> OP exp MORE exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 114
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 106
+
+    (69) bool -> OP exp LESS exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 115
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 107
+
+    (60) if -> IF bool_exp OF stmt_list_if CF .
+
+    CF              reduce using rule 60 (if -> IF bool_exp OF stmt_list_if CF .)
+    SC              reduce using rule 60 (if -> IF bool_exp OF stmt_list_if CF .)
+
+
+state 108
+
+    (29) stmt_list_if -> stmt_list_if SC . stmt_if
+    (30) stmt_if -> . prisv
+    (31) stmt_if -> . print
+    (32) stmt_if -> . while
+    (33) stmt_if -> . if
+    (34) stmt_if -> . CONTINUE
+    (35) stmt_if -> . BREAK
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+
+    CONTINUE        shift and go to state 88
+    BREAK           shift and go to state 89
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+
+    stmt_if                        shift and go to state 116
+    prisv                          shift and go to state 84
+    print                          shift and go to state 85
+    while                          shift and go to state 86
+    if                             shift and go to state 87
+
+state 109
+
+    (5) def -> DEF ID OP dec_list CP OF . stmt_list_def CF
+    (6) def -> DEF ID OP dec_list CP OF . VARS dec_list stmt_list_def CF
+    (36) stmt_list_def -> . stmt_def
+    (37) stmt_list_def -> . stmt_list_def SC stmt_def
+    (38) stmt_def -> . prisv
+    (39) stmt_def -> . print
+    (40) stmt_def -> . while
+    (41) stmt_def -> . if
+    (42) stmt_def -> . return
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+    (43) return -> . RETURN exp
+
+    VARS            shift and go to state 118
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+    RETURN          shift and go to state 125
+
+    stmt_list_def                  shift and go to state 117
+    stmt_def                       shift and go to state 119
+    prisv                          shift and go to state 120
+    print                          shift and go to state 121
+    while                          shift and go to state 122
+    if                             shift and go to state 123
+    return                         shift and go to state 124
+
+state 110
+
+    (13) arg -> OP exp . CP
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CP              shift and go to state 126
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 111
+
+    (7) defstmt -> ID OP args CP .
+
+    MUL             reduce using rule 7 (defstmt -> ID OP args CP .)
+    DIV             reduce using rule 7 (defstmt -> ID OP args CP .)
+    SUM             reduce using rule 7 (defstmt -> ID OP args CP .)
+    SUB             reduce using rule 7 (defstmt -> ID OP args CP .)
+    CF              reduce using rule 7 (defstmt -> ID OP args CP .)
+    SC              reduce using rule 7 (defstmt -> ID OP args CP .)
+    CP              reduce using rule 7 (defstmt -> ID OP args CP .)
+    RAVNO           reduce using rule 7 (defstmt -> ID OP args CP .)
+    MORE            reduce using rule 7 (defstmt -> ID OP args CP .)
+    LESS            reduce using rule 7 (defstmt -> ID OP args CP .)
+
+
+state 112
+
+    (9) args -> args SC . arg
+    (10) arg -> . ID
+    (11) arg -> . NUMBER_INT
+    (12) arg -> . NUMBER_REAL
+    (13) arg -> . OP exp CP
+
+    ID              shift and go to state 92
+    NUMBER_INT      shift and go to state 96
+    NUMBER_REAL     shift and go to state 97
+    OP              shift and go to state 93
+
+    arg                            shift and go to state 127
+
+state 113
+
+    (67) bool -> OP exp RAVNO exp CP .
+
+    OF              reduce using rule 67 (bool -> OP exp RAVNO exp CP .)
+    OR              reduce using rule 67 (bool -> OP exp RAVNO exp CP .)
+    AND             reduce using rule 67 (bool -> OP exp RAVNO exp CP .)
+
+
+state 114
+
+    (68) bool -> OP exp MORE exp CP .
+
+    OF              reduce using rule 68 (bool -> OP exp MORE exp CP .)
+    OR              reduce using rule 68 (bool -> OP exp MORE exp CP .)
+    AND             reduce using rule 68 (bool -> OP exp MORE exp CP .)
+
+
+state 115
+
+    (69) bool -> OP exp LESS exp CP .
+
+    OF              reduce using rule 69 (bool -> OP exp LESS exp CP .)
+    OR              reduce using rule 69 (bool -> OP exp LESS exp CP .)
+    AND             reduce using rule 69 (bool -> OP exp LESS exp CP .)
+
+
+state 116
+
+    (29) stmt_list_if -> stmt_list_if SC stmt_if .
+
+    CF              reduce using rule 29 (stmt_list_if -> stmt_list_if SC stmt_if .)
+    SC              reduce using rule 29 (stmt_list_if -> stmt_list_if SC stmt_if .)
+
+
+state 117
+
+    (5) def -> DEF ID OP dec_list CP OF stmt_list_def . CF
+    (37) stmt_list_def -> stmt_list_def . SC stmt_def
+
+    CF              shift and go to state 128
+    SC              shift and go to state 129
+
+
+state 118
+
+    (6) def -> DEF ID OP dec_list CP OF VARS . dec_list stmt_list_def CF
+    (14) dec_list -> . dec
+    (15) dec_list -> . dec_list SC dec
+    (16) dec -> . type DP OP id_list CP
+    (17) type -> . INT
+    (18) type -> . REAL
+    (19) type -> . STRING
+
+    INT             shift and go to state 6
+    REAL            shift and go to state 7
+    STRING          shift and go to state 8
+
+    dec_list                       shift and go to state 130
+    dec                            shift and go to state 4
+    type                           shift and go to state 5
+
+state 119
+
+    (36) stmt_list_def -> stmt_def .
+
+    CF              reduce using rule 36 (stmt_list_def -> stmt_def .)
+    SC              reduce using rule 36 (stmt_list_def -> stmt_def .)
+
+
+state 120
+
+    (38) stmt_def -> prisv .
+
+    CF              reduce using rule 38 (stmt_def -> prisv .)
+    SC              reduce using rule 38 (stmt_def -> prisv .)
+
+
+state 121
+
+    (39) stmt_def -> print .
+
+    CF              reduce using rule 39 (stmt_def -> print .)
+    SC              reduce using rule 39 (stmt_def -> print .)
+
+
+state 122
+
+    (40) stmt_def -> while .
+
+    CF              reduce using rule 40 (stmt_def -> while .)
+    SC              reduce using rule 40 (stmt_def -> while .)
+
+
+state 123
+
+    (41) stmt_def -> if .
+
+    CF              reduce using rule 41 (stmt_def -> if .)
+    SC              reduce using rule 41 (stmt_def -> if .)
+
+
+state 124
+
+    (42) stmt_def -> return .
+
+    CF              reduce using rule 42 (stmt_def -> return .)
+    SC              reduce using rule 42 (stmt_def -> return .)
+
+
+state 125
+
+    (43) return -> RETURN . exp
+    (46) exp -> . term
+    (47) exp -> . exp SUM term
+    (48) exp -> . exp SUB term
+    (49) term -> . factor
+    (50) term -> . term MUL factor
+    (51) term -> . term DIV factor
+    (52) factor -> . defstmt
+    (53) factor -> . ID
+    (54) factor -> . NUMBER_INT
+    (55) factor -> . NUMBER_REAL
+    (56) factor -> . OP exp CP
+    (7) defstmt -> . ID OP args CP
+
+    ID              shift and go to state 46
+    NUMBER_INT      shift and go to state 52
+    NUMBER_REAL     shift and go to state 53
+    OP              shift and go to state 54
+
+    exp                            shift and go to state 131
+    term                           shift and go to state 49
+    factor                         shift and go to state 50
+    defstmt                        shift and go to state 51
+
+state 126
+
+    (13) arg -> OP exp CP .
+
+    CP              reduce using rule 13 (arg -> OP exp CP .)
+    SC              reduce using rule 13 (arg -> OP exp CP .)
+
+
+state 127
+
+    (9) args -> args SC arg .
+
+    CP              reduce using rule 9 (args -> args SC arg .)
+    SC              reduce using rule 9 (args -> args SC arg .)
+
+
+state 128
+
+    (5) def -> DEF ID OP dec_list CP OF stmt_list_def CF .
+
+    OF              reduce using rule 5 (def -> DEF ID OP dec_list CP OF stmt_list_def CF .)
+    SC              reduce using rule 5 (def -> DEF ID OP dec_list CP OF stmt_list_def CF .)
+
+
+state 129
+
+    (37) stmt_list_def -> stmt_list_def SC . stmt_def
+    (38) stmt_def -> . prisv
+    (39) stmt_def -> . print
+    (40) stmt_def -> . while
+    (41) stmt_def -> . if
+    (42) stmt_def -> . return
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+    (43) return -> . RETURN exp
+
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+    RETURN          shift and go to state 125
+
+    stmt_def                       shift and go to state 132
+    prisv                          shift and go to state 120
+    print                          shift and go to state 121
+    while                          shift and go to state 122
+    if                             shift and go to state 123
+    return                         shift and go to state 124
+
+state 130
+
+    (6) def -> DEF ID OP dec_list CP OF VARS dec_list . stmt_list_def CF
+    (15) dec_list -> dec_list . SC dec
+    (36) stmt_list_def -> . stmt_def
+    (37) stmt_list_def -> . stmt_list_def SC stmt_def
+    (38) stmt_def -> . prisv
+    (39) stmt_def -> . print
+    (40) stmt_def -> . while
+    (41) stmt_def -> . if
+    (42) stmt_def -> . return
+    (44) prisv -> . ID PRISV exp
+    (45) prisv -> . ID PRISV STRING
+    (57) print -> . PRINT OP exp CP
+    (58) print -> . PRINT OP STRING CP
+    (59) while -> . WHILE bool_exp OF stmt_list CF
+    (60) if -> . IF bool_exp OF stmt_list_if CF
+    (43) return -> . RETURN exp
+
+    SC              shift and go to state 11
+    ID              shift and go to state 21
+    PRINT           shift and go to state 22
+    WHILE           shift and go to state 23
+    IF              shift and go to state 24
+    RETURN          shift and go to state 125
+
+    stmt_list_def                  shift and go to state 133
+    stmt_def                       shift and go to state 119
+    prisv                          shift and go to state 120
+    print                          shift and go to state 121
+    while                          shift and go to state 122
+    if                             shift and go to state 123
+    return                         shift and go to state 124
+
+state 131
+
+    (43) return -> RETURN exp .
+    (47) exp -> exp . SUM term
+    (48) exp -> exp . SUB term
+
+    CF              reduce using rule 43 (return -> RETURN exp .)
+    SC              reduce using rule 43 (return -> RETURN exp .)
+    SUM             shift and go to state 68
+    SUB             shift and go to state 69
+
+
+state 132
+
+    (37) stmt_list_def -> stmt_list_def SC stmt_def .
+
+    CF              reduce using rule 37 (stmt_list_def -> stmt_list_def SC stmt_def .)
+    SC              reduce using rule 37 (stmt_list_def -> stmt_list_def SC stmt_def .)
+
+
+state 133
+
+    (6) def -> DEF ID OP dec_list CP OF VARS dec_list stmt_list_def . CF
+    (37) stmt_list_def -> stmt_list_def . SC stmt_def
+
+    CF              shift and go to state 134
+    SC              shift and go to state 129
+
+
+state 134
+
+    (6) def -> DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF .
+
+    OF              reduce using rule 6 (def -> DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF .)
+    SC              reduce using rule 6 (def -> DEF ID OP dec_list CP OF VARS dec_list stmt_list_def CF .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for OR in state 60 resolved as shift
+WARNING: reduce/reduce conflict in state 37 resolved using rule (bool_exp -> bool)
+WARNING: rejected rule (bool_exp_term -> bool) in state 37
